@@ -13,7 +13,6 @@ class SwigConan(ConanFile):
     topics = ("conan", "swig", "python", "java", "wrapper")
     url = "https://github.com/bincrafters/conan-swig_installer"
     homepage = "http://www.swig.org"
-    author = "Bincrafters <bincrafters@gmail.com>"
     license = "GPL-3.0-or-later"
     exports = ["LICENSE.md"]
     exports_sources = "patches/*.patch"
@@ -43,7 +42,7 @@ class SwigConan(ConanFile):
             self.build_requires("bison_installer/3.3.2@bincrafters/stable")
         self.build_requires("pcre/8.41")
         if self.settings.compiler == "Visual Studio":
-            self.build_requires("cccl_installer/1.0@bincrafters/stable")
+            self.build_requires("cccl/1.1")
 
     def system_requirements(self):
         if self.develop:
