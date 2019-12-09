@@ -35,7 +35,7 @@ class SwigConan(ConanFile):
 
     def build_requirements(self):
         if tools.os_info.is_windows:
-            self.build_requires("msys2/20161025")
+            self.build_requires("msys2/20190524")
         if self.settings.os_build == "Windows":
             self.build_requires("winflexbison/2.5.18@bincrafters/stable")
         else:
