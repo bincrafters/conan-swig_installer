@@ -8,13 +8,11 @@ import shutil
 
 class SwigConan(ConanFile):
     name = "swig_installer"
-    version = "4.0.1"
     description = "SWIG is a software development tool that connects programs written in C and C++ with a variety of high-level programming languages."
     topics = ("conan", "swig", "python", "java", "wrapper")
     url = "https://github.com/bincrafters/conan-swig_installer"
     homepage = "http://www.swig.org"
     license = "GPL-3.0-or-later"
-    exports = ["LICENSE.md"]
     exports_sources = "patches/*.patch"
     settings = "os_build", "arch_build", "compiler", "os", "arch"
 
@@ -56,12 +54,9 @@ class SwigConan(ConanFile):
                     installer.install(package)
 
     def source(self):
-        url = "https://github.com/swig/swig/archive/rel-{}.tar.gz".format(self.version)
-        sha256 = "2eaf6fb89d071d1be280bf995c63360b3729860c0da64948123b5d7e4cfb6cb7"
-        foldername = "swig-rel-{}".format(self.version)
-
-        tools.get(url, sha256=sha256)
-        os.rename(foldername, self._source_subfolder)
+        tools.get(**self.conan_data["sources"][self.version])
+        extracted_dir = "swig-rel-{}".format(self.version)
+        os.rename(extracted_dir, self._source_subfolder)
 
     @contextmanager
     def _build_environment(self):
